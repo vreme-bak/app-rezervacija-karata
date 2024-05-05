@@ -1,0 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+* {
+  font-family: roboto;
+}
+
+body {
+  margin: 0;
+  background-color: #171717;
+  background-image: url("https://seatgeek.com/_next/image?url=https%3A%2F%2Fseatgeek.com%2Fimages%2Fimage_uploads%2Fcategory%2Fconcert-medium.jpg&w=3840&q=75");
+  background-size: cover;
+}
