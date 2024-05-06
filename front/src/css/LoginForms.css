@@ -1,0 +1,93 @@
+h1.loginTitle {
+  margin: 0;
+  font-size: 16pt;
+  font-weight: 300;
+}
+
+.prompt {
+  display: flex;
+  flex-direction: column;
+  min-height: 220px;
+}
+
+.loginField {
+  outline: 0;
+  background-color: #e7edf3;
+  border: 0;
+
+  min-height: 40px;
+  border: 1px solid #96989b53;
+
+  margin-top: 10px;
+  border-radius: 5px;
+  padding: 0 2rem 0 2rem;
+
+  color: #233b58;
+
+  transition: outline;
+  transition-duration: 400ms;
+  transition-timing-function: ease;
+}
+
+.loginField:first-of-type {
+  margin-top: 30px;
+}
+
+.loginField:focus {
+  outline: 1px solid #96989b53;
+}
+
+.submitBtn {
+  border: 0;
+  background-color: #2a476a;
+  color: #e7edf3;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 12pt;
+
+  transition: background-color;
+  transition-duration: 200ms;
+  transition-timing-function: ease;
+
+  cursor: pointer;
+  min-height: 40px;
+
+  margin: auto 0 0 0;
+  outline: 0;
+}
+
+.submitBtn:hover {
+  background-color: #233b58;
+}
+
+.submitBtn:focus {
+  background-color: #233b58;
+}
+
+.submitBtn:active {
+  background-color: #355985;
+}
+
+.toggleLink {
+  display: flex;
+  justify-content: end;
+}
+
+.swapToRegister {
+  width: fit-content;
+  margin: 10px 0 0 0;
+  font-weight: 300;
+  font-size: 11pt;
+  color: #356eb4;
+  user-select: none;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.swapToRegister:hover {
+  color: #3e81d3;
+}
+
+.swapToLogin {
+  margin-bottom: 35px;
+}

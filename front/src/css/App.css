@@ -6,6 +6,16 @@
 
 body {
   margin: 0;
+  background-color: #e7edf3;
+}
+
+.egdiv {
+  background-color: green;
+  width: 100%;
+  height: 800px;
+
+  position: relative;
+  z-index: 2;
 }
 
 #content {
@@ -21,7 +31,7 @@ body {
 }
 
 .contentDown {
-  transform: translate(0, 300px);
+  transform: translate(0, 60%);
 }
 
 .sectionLine {
@@ -40,6 +50,13 @@ body {
   background-image: url("../assets/background1.webp");
   background-size: cover;
   background-repeat: no-repeat;
+
+  transition: transform;
+  transition-duration: 400ms;
+  transition-timing-function: ease;
+
+  position: relative;
+  z-index: 1;
 }
 
 .titleOne {
@@ -66,6 +83,13 @@ body {
   margin: 0 0 20px 3.75rem;
 }
 
+.toaster-wrapper > div {
+  display: none !important;
+}
+.toaster-wrapper > div:nth-child(-n + 3) {
+  display: flex !important;
+}
+
 @media screen and (min-width: 720px) {
   .sectionOne {
     background-image: url("../assets/background2.jpg");
@@ -81,6 +105,16 @@ body {
   }
   .sectionLine {
     background-color: #2a476a;
+  }
+}
+@media screen and (max-height: 590px) {
+  .contentDown {
+    transform: translate(0, 80%);
+  }
+}
+@media screen and (max-width: 420px) {
+  .contentDown {
+    transform: translate(0, 85%);
   }
 }
 
@@ -115,5 +149,11 @@ body {
   }
   .sectionLine {
     background-color: hsla(210, 33%, 93%, 0.4);
+  }
+}
+
+@media screen and (min-width: 1200px) and (orientation: landscape) {
+  .contentDown {
+    transform: translate(0, 40%);
   }
 }

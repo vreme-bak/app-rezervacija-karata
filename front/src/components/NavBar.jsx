@@ -1,6 +1,10 @@
 /* eslint-disable react/prop-types */
 import "../css/NavBar.css";
+import toast from "react-hot-toast";
+import Modal from "./Modal";
+import { useState } from "react";
 function NavBar({ menuOpen, setMenuOpen }) {
+  const [accountModal, setAccountModal] = useState(false);
   return (
     <>
       <div id="NavBar">
@@ -43,6 +47,9 @@ function NavBar({ menuOpen, setMenuOpen }) {
             <input
               className="searchNavBar"
               placeholder="Šta želite da gledate?"
+              onClick={() => {
+                setMenuOpen(false);
+              }}
             />
             <div className="searchGlass">
               <svg
@@ -65,8 +72,26 @@ function NavBar({ menuOpen, setMenuOpen }) {
             </div>
           </div>
           <div className="rightSideNavBar">
-            <div className="support">Support</div>
-            <div className="navBarBtn profileBtn">
+            <div
+              className="support"
+              onClick={() => {
+                setMenuOpen(false);
+                toast.error("Currently unavailable", {
+                  style: {
+                    backgroundColor: "rgb(255, 129, 129)",
+                  },
+                });
+              }}
+            >
+              Support
+            </div>
+            <div
+              className="navBarBtn profileBtn"
+              onClick={() => {
+                setMenuOpen(false);
+                setAccountModal(true);
+              }}
+            >
               <svg
                 className="svgNavBar"
                 width="1.5em"
@@ -88,6 +113,7 @@ function NavBar({ menuOpen, setMenuOpen }) {
           </div>
         </div>
         <div className="navLine"></div>
+        {accountModal ? <Modal setAccountModal={setAccountModal} /> : ""}
       </div>
     </>
   );
