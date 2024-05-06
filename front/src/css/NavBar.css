@@ -27,6 +27,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  transition: background-color;
+  transition-duration: 300ms;
+  transition-timing-function: ease;
+}
+
+.navBarBtn:hover {
+  background-color: #ccd2d7;
 }
 
 .logoNavBar {
@@ -38,6 +46,7 @@
 }
 
 .svgNavBar {
+  position: absolute;
   filter: invert(23%) sepia(50%) saturate(518%) hue-rotate(171deg)
     brightness(98%) contrast(96%);
 }
@@ -76,6 +85,36 @@
 
 .menuBtn {
   margin-right: 10px;
+  position: relative;
+}
+
+.barsIcon {
+  opacity: 1;
+  transition: opacity;
+  transition-duration: 400ms;
+  transition-timing-function: ease;
+}
+
+.arrow {
+  transform: translate(0, -20%);
+  max-width: 20px;
+  opacity: 0;
+
+  transition: opacity;
+  transition-duration: 400ms;
+  transition-timing-function: ease;
+}
+
+.rotateArrow {
+  transform: rotate(180deg) translate(0, -20%);
+}
+
+.menuBtn:hover .arrow {
+  opacity: 1;
+}
+
+.menuBtn:hover .barsIcon {
+  opacity: 0;
 }
 
 .support {
@@ -84,6 +123,7 @@
   user-select: none;
   cursor: pointer;
   margin-right: 10px;
+  display: none;
 }
 
 .leftSideNavBar {
@@ -93,9 +133,9 @@
 }
 
 .searchSideNavBar {
-  display: flex;
   position: relative;
   align-items: center;
+  display: none;
 }
 
 .rightSideNavBar {
@@ -117,4 +157,43 @@
 .searchNavBar:focus ~ .searchGlass {
   filter: invert(57%) sepia(44%) saturate(4726%) hue-rotate(167deg)
     brightness(98%) contrast(80%);
+}
+
+@media screen and (min-width: 580px) {
+  .searchSideNavBar {
+    display: flex;
+  }
+}
+
+@media screen and (min-width: 640px) {
+  .support {
+    display: block;
+  }
+}
+
+@media screen and (min-width: 720px) {
+  .support {
+    display: block;
+  }
+  .navLine {
+    background-color: #2a476a;
+  }
+}
+
+@media screen and (max-height: 700px) {
+  .navLine {
+    background-color: hsla(210, 33%, 93%, 0.4);
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .searchNavBar {
+    width: 300px;
+  }
+}
+
+@media screen and (min-width: 1150px) {
+  .navLine {
+    background-color: hsla(210, 33%, 93%, 0.4);
+  }
 }

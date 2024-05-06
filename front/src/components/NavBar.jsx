@@ -1,13 +1,19 @@
+/* eslint-disable react/prop-types */
 import "../css/NavBar.css";
-function NavBar() {
+function NavBar({ menuOpen, setMenuOpen }) {
   return (
     <>
       <div id="NavBar">
         <div className="mainNavWrap">
           <div className="leftSideNavBar">
-            <div className="navBarBtn menuBtn">
+            <div
+              className="navBarBtn menuBtn"
+              onClick={() => {
+                setMenuOpen(!menuOpen);
+              }}
+            >
               <svg
-                className="svgNavBar"
+                className="svgNavBar barsIcon"
                 width="1.5em"
                 height="1.5em"
                 viewBox="0 0 24 24"
@@ -22,6 +28,13 @@ function NavBar() {
                   d="M4 6C4 5.44772 4.44772 5 5 5H19C19.5523 5 20 5.44772 20 6C20 6.55228 19.5523 7 19 7H5C4.44772 7 4 6.55228 4 6ZM4 12C4 11.4477 4.44772 11 5 11H19C19.5523 11 20 11.4477 20 12C20 12.5523 19.5523 13 19 13H5C4.44772 13 4 12.5523 4 12ZM5 17C4.44772 17 4 17.4477 4 18C4 18.5523 4.44772 19 5 19H19C19.5523 19 20 18.5523 20 18C20 17.4477 19.5523 17 19 17H5Z"
                   fill="currentColor"
                 ></path>
+              </svg>
+              <svg
+                className={`svgNavBar arrow ${menuOpen ? "rotateArrow" : ""}`}
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 320 512"
+              >
+                <path d="M182.6 470.6c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-9.2-9.2-11.9-22.9-6.9-34.9s16.6-19.8 29.6-19.8H288c12.9 0 24.6 7.8 29.6 19.8s2.2 25.7-6.9 34.9l-128 128z" />
               </svg>
             </div>
             <div className="logoNavBar"></div>

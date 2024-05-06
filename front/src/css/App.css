@@ -6,7 +6,114 @@
 
 body {
   margin: 0;
+}
+
+#content {
+  width: 100%;
+
+  transition: transform;
+  transition-duration: 400ms;
+  transition-timing-function: ease;
+}
+
+.websiteContainer {
+  position: relative;
+}
+
+.contentDown {
+  transform: translate(0, 300px);
+}
+
+.sectionLine {
+  height: 1px;
+  background-color: hsla(210, 33%, 93%, 0.4);
+  margin: 0 3.75rem 10px 3.75rem;
+}
+
+.sectionOne {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 70vh;
+
   background-color: #171717;
-  background-image: url("https://seatgeek.com/_next/image?url=https%3A%2F%2Fseatgeek.com%2Fimages%2Fimage_uploads%2Fcategory%2Fconcert-medium.jpg&w=3840&q=75");
+  background-image: url("../assets/background1.webp");
   background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.titleOne {
+  color: hsla(210, 33%, 93%, 0.9);
+  font-weight: 600;
+  font-size: 24pt;
+
+  margin: auto 0 5px 3.75rem;
+}
+
+.titleTwo {
+  color: hsla(210, 33%, 93%, 0.9);
+  font-weight: 300;
+  font-size: 14pt;
+
+  margin: 0 0 20px 3.75rem;
+}
+
+.titleThree {
+  color: hsla(210, 33%, 93%, 0.9);
+  font-weight: 200;
+  font-size: 12pt;
+
+  margin: 0 0 20px 3.75rem;
+}
+
+@media screen and (min-width: 720px) {
+  .sectionOne {
+    background-image: url("../assets/background2.jpg");
+  }
+  .titleOne {
+    color: #2a476a;
+  }
+  .titleTwo {
+    color: #2a476a;
+  }
+  .titleThree {
+    color: #2a476a;
+  }
+  .sectionLine {
+    background-color: #2a476a;
+  }
+}
+
+@media screen and (max-height: 700px) {
+  .titleOne {
+    color: hsla(210, 33%, 93%, 0.9);
+  }
+  .titleTwo {
+    color: hsla(210, 33%, 93%, 0.9);
+  }
+  .titleThree {
+    color: hsla(210, 33%, 93%, 0.9);
+  }
+  .sectionLine {
+    background-color: hsla(210, 33%, 93%, 0.4);
+  }
+}
+
+@media screen and (min-width: 1150px) {
+  .sectionOne {
+    background-image: url("../assets/background3.webp");
+    background-position: center bottom;
+  }
+  .titleOne {
+    color: hsla(210, 33%, 93%, 0.9);
+  }
+  .titleTwo {
+    color: hsla(210, 33%, 93%, 0.9);
+  }
+  .titleThree {
+    color: hsla(210, 33%, 93%, 0.9);
+  }
+  .sectionLine {
+    background-color: hsla(210, 33%, 93%, 0.4);
+  }
 }
