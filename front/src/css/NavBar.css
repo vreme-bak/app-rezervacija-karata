@@ -90,6 +90,7 @@
 
 .barsIcon {
   opacity: 1;
+
   transition: opacity;
   transition-duration: 400ms;
   transition-timing-function: ease;

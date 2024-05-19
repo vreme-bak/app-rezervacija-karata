@@ -1,0 +1,11 @@
+.concertsWrap {
+  background-color: #e7edf3;
+  width: calc(100% - 3.5rem);
+
+  position: relative;
+  z-index: 2;
+
+  box-shadow: 0 0 5px #2a476a;
+
+  padding: 50px 0 0 3.5rem;
+}

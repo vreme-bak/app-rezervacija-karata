@@ -31,7 +31,7 @@ body {
 }
 
 .contentDown {
-  transform: translate(0, 60%);
+  transform: translate(0, 300px);
 }
 
 .sectionLine {
@@ -64,7 +64,7 @@ body {
   font-weight: 600;
   font-size: 24pt;
 
-  margin: auto 0 5px 3.75rem;
+  margin: auto 3.75rem 5px 3.75rem;
 }
 
 .titleTwo {
@@ -72,7 +72,7 @@ body {
   font-weight: 300;
   font-size: 14pt;
 
-  margin: 0 0 20px 3.75rem;
+  margin: 0 3.75rem 20px 3.75rem;
 }
 
 .titleThree {
@@ -80,7 +80,7 @@ body {
   font-weight: 200;
   font-size: 12pt;
 
-  margin: 0 0 20px 3.75rem;
+  margin: 0 3.75rem 20px 3.75rem;
 }
 
 .toaster-wrapper > div {
@@ -105,16 +105,6 @@ body {
   }
   .sectionLine {
     background-color: #2a476a;
-  }
-}
-@media screen and (max-height: 590px) {
-  .contentDown {
-    transform: translate(0, 80%);
-  }
-}
-@media screen and (max-width: 420px) {
-  .contentDown {
-    transform: translate(0, 85%);
   }
 }
 
@@ -152,8 +142,36 @@ body {
   }
 }
 
-@media screen and (min-width: 1200px) and (orientation: landscape) {
-  .contentDown {
-    transform: translate(0, 40%);
+@media screen and (min-width: 2100px) {
+  .sectionOne {
+    background-image: none;
+    background-size: 20px 20px;
+    background-repeat: repeat;
+    background-image: linear-gradient(
+      -45deg,
+      #0c1218 25%,
+      #16222f 25%,
+      #16222f 50%,
+      #0c1218 50%,
+      #0c1218 75%,
+      #16222f 75%,
+      #16222f 100%
+    );
+    animation: pan 360s linear infinite;
+  }
+  @keyframes pan {
+    from {
+      background-position: top left;
+    }
+    to {
+      background-position: top right;
+    }
+  }
+}
+
+@media screen and (max-height: 530px) {
+  .sectionOne {
+    z-index: 3;
+    height: 300px;
   }
 }

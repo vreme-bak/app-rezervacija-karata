@@ -1,9 +1,9 @@
 .menuContent {
   position: absolute;
   z-index: 1;
-  padding: 3.75rem;
+  padding: 3.75rem 3.75rem 0 3.75rem;
   width: calc(100% - 7.5rem);
-  height: calc(300px - 7.5rem);
+  height: calc(300px - 3.75rem);
   background-color: #e7edf3;
   color: #2a476a;
 
@@ -18,14 +18,14 @@
   align-items: center;
   display: none;
 
-  margin: auto 0 0 0;
+  margin: 0 0 0 20px;
 }
 
 .wrapContentMenu {
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 70%;
+  margin: 0 0 auto 0;
 }
 
 .logoMenu {
@@ -38,13 +38,17 @@
 }
 
 .aboutMe {
-  margin-top: 30px;
+  margin-top: 10px;
   margin-bottom: 10px;
   font-size: 22pt;
   font-weight: 700;
   color: #2a476a;
   pointer-events: none;
   user-select: none;
+}
+
+.tekst {
+  margin: 0;
 }
 
 .aboutMeContent {
@@ -71,18 +75,23 @@
   margin: 0;
   font-size: 14pt;
 
-  transition: background-color, color;
+  transition: background-color, color, box-shadow, border;
   transition-duration: 300ms;
   transition-timing-function: ease;
+
+  box-shadow: 0px 0px 8px #8787875d;
 }
 
 .searchNavBar-menu:hover {
   background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0px 0px 12px #87878774;
+  border: 1px solid transparent;
 }
 
 .searchNavBar-menu:focus {
   background-color: #2a476a;
   color: #e7edf3;
+  border: 1px solid transparent;
 }
 
 .searchNavBar-menu:focus ~ .searchGlass-menu {
@@ -102,23 +111,61 @@
   z-index: 1;
 }
 
-@media screen and (orientation: landscape) {
-  .menuContent {
-    flex-direction: row;
-    padding-top: 0;
-  }
+.logoWrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+
+  width: 100%;
 }
 
-@media screen and (max-width: 580px) {
+.menuLine {
+  height: 1px;
+  width: 100%;
+  background-color: #2a476a;
+  margin: 10px 3.75rem 0px 3.75rem;
+
+  display: none;
+}
+
+@media screen and (max-width: 579px) {
   .searchSideNavBar-menu {
     display: flex;
   }
-  .aboutMe {
-    text-decoration: underline;
-    pointer-events: all;
-    cursor: pointer;
+  .menuLine {
+    display: block;
   }
-  .aboutMeContent-hid {
-    display: none;
+}
+
+@media screen and (max-width: 425px) {
+  .aboutMe {
+    font-size: 20pt;
+  }
+  .tekst {
+    font-size: 10pt;
+  }
+  .searchNavBar-menu {
+    font-size: 12pt;
+  }
+}
+
+@media screen and (max-width: 390px) {
+  .searchNavBar-menu {
+    font-size: 10pt;
+  }
+}
+
+@media screen and (max-width: 340px) {
+  .aboutMe {
+    font-size: 18pt;
+  }
+  .tekst {
+    font-size: 9.5pt;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .tekst {
+    font-size: 8.75pt;
   }
 }

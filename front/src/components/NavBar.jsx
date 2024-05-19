@@ -1,10 +1,7 @@
 /* eslint-disable react/prop-types */
 import "../css/NavBar.css";
 import toast from "react-hot-toast";
-import Modal from "./Modal";
-import { useState } from "react";
-function NavBar({ menuOpen, setMenuOpen }) {
-  const [accountModal, setAccountModal] = useState(false);
+function NavBar({ menuOpen, setMenuOpen, setAccountModal }) {
   return (
     <>
       <div id="NavBar">
@@ -113,7 +110,6 @@ function NavBar({ menuOpen, setMenuOpen }) {
           </div>
         </div>
         <div className="navLine"></div>
-        {accountModal ? <Modal setAccountModal={setAccountModal} /> : ""}
       </div>
     </>
   );
