@@ -1,12 +1,13 @@
+/* eslint-disable react/prop-types */
 import "../css/Concerts.css";
 import Category from "./Category";
-function Concerts() {
+function Concerts({ activeConcerts }) {
   return (
     <>
       <div className="concertsWrap">
-        <Category catName={"test1"} />
-        <Category catName={"test2"} />
-        <Category catName={"test3"} />
+        {Object.values(activeConcerts).map((e) => (
+          <Category key={e.catName} sepConcerts={e} />
+        ))}
       </div>
     </>
   );

@@ -1,0 +1,46 @@
+.conCard {
+  height: 100%;
+  width: 300px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.disPic {
+  width: 95%;
+  height: 75%;
+  margin: 0 2.5% 0 2.5%;
+  border-radius: 15px;
+
+  cursor: pointer;
+}
+
+.conName {
+  margin: 10px 0 0 2.5%;
+  font-weight: 300;
+  font-size: 12pt;
+  color: #0b0d0e;
+  width: fit-content;
+
+  cursor: pointer;
+}
+
+.conDate {
+  margin: 0 0 0 2.5%;
+  font-weight: 300;
+  font-size: 10pt;
+  color: #0b0d0e78;
+  width: fit-content;
+
+  cursor: pointer;
+}
+
+.conPrice {
+  margin: 5px 0 0 2.5%;
+  font-weight: 300;
+  font-size: 11pt;
+  color: #0b0d0ed4;
+  width: fit-content;
+
+  cursor: pointer;
+}

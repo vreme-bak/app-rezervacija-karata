@@ -6,6 +6,40 @@ import "./css/App.css";
 import { useState, useEffect } from "react";
 import { Toaster } from "react-hot-toast";
 function App() {
+  const testjson = {
+    cat1: {
+      catName: "Metal",
+      concerts: {
+        con1: {
+          conName: "BMTH avenue",
+          conDate: "May 25",
+          conPrice: "19200",
+          conImage: "../assets/concertImages/1.jpg",
+        },
+        con2: {
+          conName: "Arena lol",
+          conDate: "Apr 16",
+          conPrice: "14200",
+          conImage: "",
+        },
+        con3: {
+          conName: "Topcider",
+          conDate: "Jul 23",
+          conPrice: "3290",
+          conImage: "",
+        },
+      },
+    },
+    cat2: {
+      catName: "Pop",
+      concerts: {},
+    },
+    cat3: {
+      catName: "Opera",
+      concerts: {},
+    },
+  };
+
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrollTop, setScrollTop] = useState(0);
 
@@ -40,7 +74,7 @@ function App() {
             Najpovoljnije, sve odmah. Maturski rad Luka Vučetić.
           </p>
         </div>
-        <Concerts />
+        <Concerts activeConcerts={testjson} />
       </div>
       <Toaster containerClassName="toaster-wrapper" />
       {accountModal ? <Modal setAccountModal={setAccountModal} /> : ""}
