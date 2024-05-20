@@ -14,7 +14,7 @@ function App() {
           conName: "BMTH avenue",
           conDate: "May 25",
           conPrice: "19200",
-          conImage: "../assets/concertImages/1.jpg",
+          conImage: "/src/assets/concertImages/1.jpg",
         },
         con2: {
           conName: "Arena lol",
@@ -23,7 +23,19 @@ function App() {
           conImage: "",
         },
         con3: {
-          conName: "Topcider",
+          conName: "Topciderfs",
+          conDate: "Jul 23",
+          conPrice: "3290",
+          conImage: "",
+        },
+        con4: {
+          conName: "Topciderza",
+          conDate: "Jul 23",
+          conPrice: "3290",
+          conImage: "",
+        },
+        con5: {
+          conName: "Topcidexcr",
           conDate: "Jul 23",
           conPrice: "3290",
           conImage: "",
@@ -32,11 +44,26 @@ function App() {
     },
     cat2: {
       catName: "Pop",
-      concerts: {},
-    },
-    cat3: {
-      catName: "Opera",
-      concerts: {},
+      concerts: {
+        con1: {
+          conName: "BMTH avenavsue",
+          conDate: "May 25",
+          conPrice: "19200",
+          conImage: "/src/assets/concertImages/1.jpg",
+        },
+        con2: {
+          conName: "BMTH avenvsue",
+          conDate: "May 25",
+          conPrice: "19200",
+          conImage: "/src/assets/concertImages/1.jpg",
+        },
+        con3: {
+          conName: "BMTH avengsue",
+          conDate: "May 25",
+          conPrice: "19200",
+          conImage: "",
+        },
+      },
     },
   };
 

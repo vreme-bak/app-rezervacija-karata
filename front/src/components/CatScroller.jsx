@@ -1,17 +1,25 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-unknown-property */
 import "../css/CatScroller.css";
-function CatScroller({ navStatus, setNavStatus }) {
+function CatScroller({ noCon, navStatus, setNavStatus, setStop }) {
+  function stopping() {
+    setStop(true);
+    setTimeout(() => {
+      setStop(false);
+    }, 300);
+  }
   return (
     <>
       <div className="catScrollerWrap">
         <div
           className="catBtn catBtnRight"
           onClick={() => {
+            stopping();
             if (navStatus == 1) {
-              setNavStatus(10);
+              setNavStatus(noCon);
               return;
             }
+
             setNavStatus(navStatus - 1);
           }}
         >
@@ -31,11 +39,14 @@ function CatScroller({ navStatus, setNavStatus }) {
             ></path>
           </svg>
         </div>
-        <div className="counter">{navStatus} of 10</div>
+        <div className="counter">
+          {navStatus} of {noCon}
+        </div>
         <div
           className="catBtn catBtnRight"
           onClick={() => {
-            if (navStatus == 10) {
+            stopping();
+            if (navStatus == noCon) {
               setNavStatus(1);
               return;
             }

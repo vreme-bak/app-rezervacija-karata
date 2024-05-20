@@ -31,5 +31,8 @@
   height: 80%;
   margin-top: auto;
   display: flex;
-  overflow: hidden;
+  overflow-y: hidden;
+
+  scrollbar-width: none;
+  scroll-snap-type: x mandatory;
 }
