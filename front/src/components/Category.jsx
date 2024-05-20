@@ -4,6 +4,7 @@ import CatScroller from "./CatScroller";
 import ConCard from "./ConCard";
 import { useEffect, useState, useRef, createRef } from "react";
 function Category({ sepConcerts, pass }) {
+  const [loading, setLoading] = useState(true);
   const [navStatus, setNavStatus] = useState(1);
   const [stop, setStop] = useState(false);
   const [horizontalScroll, setHorizontalScroll] = useState(0);
@@ -20,14 +21,6 @@ function Category({ sepConcerts, pass }) {
   updateLength(creator.length);
 
   useEffect(() => {
-    refsClick.current[navStatus - 1].current.scrollIntoView({
-      behavior: "smooth",
-      block: "nearest",
-      inline: "center",
-    });
-  }, [navStatus]);
-
-  useEffect(() => {
     const onScroll = () => {
       setHorizontalScroll(pass.current.scrollLeft);
     };
@@ -36,12 +29,24 @@ function Category({ sepConcerts, pass }) {
     if (horizontalScroll % 300 == 0 && !stop) {
       setNavStatus(Math.floor(horizontalScroll / 300) + 1);
     }
-    console.log(horizontalScroll);
 
     let clean = pass.current;
     return () => clean.removeEventListener("scroll", onScroll);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [horizontalScroll]);
+
+  useEffect(() => {
+    if (loading) return;
+    refsClick.current[navStatus - 1].current.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+      inline: "center",
+    });
+  }, [navStatus]);
+
+  useEffect(() => {
+    setLoading(false);
+  }, []);
 
   return (
     <>

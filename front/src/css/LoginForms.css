@@ -37,6 +37,10 @@ h1.loginTitle {
   outline: 1px solid #96989b53;
 }
 
+.loginKeepOutline {
+  outline: 1px solid #96989b53;
+}
+
 .submitBtn {
   border: 0;
   background-color: #2a476a;
@@ -70,12 +74,12 @@ h1.loginTitle {
 
 .toggleLink {
   display: flex;
-  justify-content: end;
+  justify-content: start;
 }
 
 .swapToRegister {
   width: fit-content;
-  margin: 10px 0 0 0;
+  margin: 10px 0 0 auto;
   font-weight: 300;
   font-size: 11pt;
   color: #356eb4;
@@ -90,4 +94,112 @@ h1.loginTitle {
 
 .swapToLogin {
   margin-bottom: 35px;
+}
+
+.showPass {
+  position: fixed;
+  top: 144px;
+  right: 38px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  width: 34px;
+  aspect-ratio: 1/1;
+  align-items: center;
+
+  transition: background-color;
+  transition-duration: 300ms;
+  transition-timing-function: ease;
+
+  border-radius: 100%;
+
+  opacity: 0;
+  animation: showBtnAppear 200ms 1;
+  animation-fill-mode: forwards;
+}
+
+.passSvg {
+  position: absolute;
+  filter: invert(23%) sepia(50%) saturate(518%) hue-rotate(171deg)
+    brightness(98%) contrast(96%);
+  width: 24px;
+  aspect-ratio: 1/1;
+  opacity: 0.8;
+}
+
+.passSvgClosed {
+  transition: opacity;
+  transition-duration: 300ms;
+  transition-timing-function: ease;
+}
+
+.passSvgOpen {
+  width: 21.5px;
+  opacity: 0;
+}
+
+.showPass:hover .passSvgClosed {
+  opacity: 1;
+}
+
+.showPass:active .passSvgOpen {
+  opacity: 1;
+}
+
+.showPass:active .passSvgClosed {
+  opacity: 0;
+}
+
+.showPass:active {
+  background-color: #bbd2e9;
+  backdrop-filter: blur(10px);
+}
+
+.secondEye {
+  top: 196px;
+}
+
+@keyframes showBtnAppear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.showPassText {
+  display: none;
+
+  width: fit-content;
+  margin: 10px 0 0 0;
+  font-weight: 300;
+  font-size: 10pt;
+  user-select: none;
+  color: #233b58;
+}
+
+.showPassTextBox {
+  display: none;
+
+  width: 15px;
+  height: 15px;
+  margin: 10px 5px 0 0;
+  border-radius: 100%;
+}
+
+.showPassTextBox:focus {
+  outline: 0;
+}
+
+@media screen and (hover: none) {
+  .showPass {
+    display: none;
+  }
+  .showPassText {
+    display: block;
+  }
+  .showPassTextBox {
+    display: block;
+  }
 }

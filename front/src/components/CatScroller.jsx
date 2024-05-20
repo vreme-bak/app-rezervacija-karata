@@ -19,7 +19,6 @@ function CatScroller({ noCon, navStatus, setNavStatus, setStop }) {
               setNavStatus(noCon);
               return;
             }
-
             setNavStatus(navStatus - 1);
           }}
         >

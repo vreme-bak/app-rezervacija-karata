@@ -5,72 +5,21 @@ import Concerts from "./components/Concerts";
 import "./css/App.css";
 import { useState, useEffect } from "react";
 import { Toaster } from "react-hot-toast";
+import axios from "axios";
+import Cookies from "js-cookie";
+
 function App() {
-  const testjson = {
-    cat1: {
-      catName: "Metal",
-      concerts: {
-        con1: {
-          conName: "BMTH avenue",
-          conDate: "May 25",
-          conPrice: "19200",
-          conImage: "/src/assets/concertImages/1.jpg",
-        },
-        con2: {
-          conName: "Arena lol",
-          conDate: "Apr 16",
-          conPrice: "14200",
-          conImage: "",
-        },
-        con3: {
-          conName: "Topciderfs",
-          conDate: "Jul 23",
-          conPrice: "3290",
-          conImage: "",
-        },
-        con4: {
-          conName: "Topciderza",
-          conDate: "Jul 23",
-          conPrice: "3290",
-          conImage: "",
-        },
-        con5: {
-          conName: "Topcidexcr",
-          conDate: "Jul 23",
-          conPrice: "3290",
-          conImage: "",
-        },
-      },
-    },
-    cat2: {
-      catName: "Pop",
-      concerts: {
-        con1: {
-          conName: "BMTH avenavsue",
-          conDate: "May 25",
-          conPrice: "19200",
-          conImage: "/src/assets/concertImages/1.jpg",
-        },
-        con2: {
-          conName: "BMTH avenvsue",
-          conDate: "May 25",
-          conPrice: "19200",
-          conImage: "/src/assets/concertImages/1.jpg",
-        },
-        con3: {
-          conName: "BMTH avengsue",
-          conDate: "May 25",
-          conPrice: "19200",
-          conImage: "",
-        },
-      },
-    },
-  };
+  // eslint-disable-next-line no-unused-vars
+  const [userEmail, setUserEmail] = useState();
+
+  const [baza, setBaza] = useState();
 
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrollTop, setScrollTop] = useState(0);
 
   const [accountModal, setAccountModal] = useState(false);
+
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const onScroll = () => {
@@ -82,6 +31,24 @@ function App() {
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, [scrollTop]);
+
+  useEffect(() => {
+    setUserEmail(Cookies.get("email"));
+    axios
+      .get("http://localhost:3000/api", {
+        validateStatus: function () {
+          return true;
+        },
+      })
+      .then((res) => {
+        setBaza(JSON.parse(res.data.everything));
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) {
+    return <></>;
+  }
 
   return (
     <div className="websiteContainer">
@@ -101,10 +68,14 @@ function App() {
             Najpovoljnije, sve odmah. Maturski rad Luka Vučetić.
           </p>
         </div>
-        <Concerts activeConcerts={testjson} />
+        <Concerts activeConcerts={baza} />
       </div>
       <Toaster containerClassName="toaster-wrapper" />
-      {accountModal ? <Modal setAccountModal={setAccountModal} /> : ""}
+      {accountModal ? (
+        <Modal setAccountModal={setAccountModal} setUserEmail={setUserEmail} />
+      ) : (
+        ""
+      )}
     </div>
   );
 }

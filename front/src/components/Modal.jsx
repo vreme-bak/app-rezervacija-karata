@@ -4,7 +4,7 @@ import "../css/Modal.css";
 import { useState } from "react";
 import Login from "./Account/Login";
 import Register from "./Account/Register";
-function Modal({ setAccountModal }) {
+function Modal({ setAccountModal, setUserEmail }) {
   const [loginRegister, setLoginRegister] = useState(true);
   return (
     <>
@@ -40,11 +40,13 @@ function Modal({ setAccountModal }) {
         <div className="modalContent">
           {loginRegister ? (
             <Login
+              setUserEmail={setUserEmail}
               loginRegister={loginRegister}
               setLoginRegister={setLoginRegister}
             />
           ) : (
             <Register
+              setUserEmail={setUserEmail}
               loginRegister={loginRegister}
               setLoginRegister={setLoginRegister}
             />
