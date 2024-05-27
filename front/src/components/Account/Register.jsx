@@ -4,7 +4,12 @@ import { useRef, useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import axios from "axios";
 import Cookies from "js-cookie";
-function Register({ loginRegister, setLoginRegister, setUserEmail }) {
+function Register({
+  loginRegister,
+  setLoginRegister,
+  setUserEmail,
+  setAccountModal,
+}) {
   const emailRef = useRef();
   const passwordRef = useRef();
   const rePasswordRef = useRef();
@@ -25,6 +30,53 @@ function Register({ loginRegister, setLoginRegister, setUserEmail }) {
     setShowPass(checkBox);
     setShowPassRe(checkBox);
   }, [checkBox]);
+
+  function handleRegister() {
+    if (pending) return;
+
+    if (
+      !emailRef.current.value
+        .trim()
+        .match(/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/)
+    ) {
+      toast.error("Neispravan e-mail.");
+      return;
+    }
+    if (passwordRef.current.value !== rePasswordRef.current.value) {
+      toast.error("Password-i se ne pokplapaju.");
+      return;
+    }
+    if (!passwordRef.current.value.match(/^(?=.*[A-Z]).{8,}$/)) {
+      toast.error("Password mora da ima najmanje 8 slova i 1 veliko.");
+      return;
+    }
+
+    setPending(true);
+
+    axios
+      .post(
+        "http://localhost:3000/api/signup/",
+        {
+          email: emailRef.current.value,
+          password: passwordRef.current.value,
+        },
+        {
+          validateStatus: function () {
+            return true;
+          },
+        }
+      )
+      .then((res) => {
+        if (res.status !== 200) toast.error("Server error");
+        else {
+          Cookies.set("email", res.data.email);
+          setUserEmail(res.data.email);
+          toast.success("Uspešno prijavljen.");
+          setAccountModal(false);
+        }
+        setPending(false);
+      });
+  }
 
   return (
     <>
@@ -78,6 +130,11 @@ function Register({ loginRegister, setLoginRegister, setUserEmail }) {
               if (e.currentTarget.value === "") {
                 setPassShownRe(false);
                 setShowBtnRe(true);
+              }
+            }}
+            onKeyDownCapture={(e) => {
+              if (e.key === "Enter") {
+                handleRegister();
               }
             }}
           />
@@ -175,50 +232,7 @@ function Register({ loginRegister, setLoginRegister, setUserEmail }) {
           <button
             className="submitBtn"
             onClick={() => {
-              if (pending) return;
-
-              if (
-                !emailRef.current.value
-                  .trim()
-                  .match(/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/)
-              ) {
-                toast.error("Neispravan e-mail.");
-                return;
-              }
-              if (passwordRef.current.value !== rePasswordRef.current.value) {
-                toast.error("Password-i se ne pokplapaju.");
-                return;
-              }
-              if (!passwordRef.current.value.match(/^(?=.*[A-Z]).{8,}$/)) {
-                toast.error(
-                  "Password mora da ima najmanje 8 slova i 1 veliko."
-                );
-                return;
-              }
-
-              setPending(true);
-
-              axios
-                .post(
-                  "http://localhost:3000/api/signup/",
-                  {
-                    email: emailRef.current.value,
-                    password: passwordRef.current.value,
-                  },
-                  {
-                    validateStatus: function () {
-                      return true;
-                    },
-                  }
-                )
-                .then((res) => {
-                  if (res.status !== 200) toast.error("Server error");
-                  else {
-                    Cookies.set("email", res.data.email);
-                    setUserEmail(res.data.email);
-                  }
-                  setPending(false);
-                });
+              handleRegister();
             }}
           >
             Register

@@ -17,6 +17,11 @@
   animation-fill-mode: forwards;
 }
 
+.modalContainer-mod {
+  min-height: 0;
+  width: 320px;
+}
+
 .modalBackground {
   position: fixed;
   top: 0;
@@ -68,6 +73,64 @@
 
   filter: invert(23%) sepia(50%) saturate(518%) hue-rotate(171deg)
     brightness(98%) contrast(96%);
+}
+
+.logOutTitle {
+  margin: 0;
+  font-size: 16pt;
+  font-weight: 300;
+}
+
+.lgBtns {
+  display: flex;
+  margin-top: auto;
+}
+
+.lgbt {
+  padding: 15px;
+  width: 120px;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+  font-size: 14pt;
+  font-weight: 300;
+
+  background-color: #e7edf3;
+
+  box-shadow: 0px 0px 8px #8787875d;
+
+  transition: box-shadow;
+  transition-duration: 200ms;
+  transition-timing-function: ease;
+}
+
+.lgbt:hover {
+  box-shadow: 0px 0px 12px #87878774;
+}
+
+.lgbt:last-of-type {
+  margin-left: auto;
+}
+
+.logOut-wrap {
+  display: flex;
+  flex-direction: column;
+  height: 120px;
+}
+
+.lgOBtn {
+  background-color: #2a476a;
+  color: #e7edf3;
+
+  box-shadow: 0px 0px 8px #2a476a7a;
+}
+
+.lgOBtn:hover {
+  box-shadow: 0px 0px 8px #3a6394;
+}
+
+.logOutText {
+  font-weight: 200;
 }
 
 @media screen and (max-width: 425px) {

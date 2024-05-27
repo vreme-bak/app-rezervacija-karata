@@ -4,7 +4,12 @@ import { useRef, useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import axios from "axios";
 import toast from "react-hot-toast";
-function Login({ loginRegister, setLoginRegister, setUserEmail }) {
+function Login({
+  loginRegister,
+  setLoginRegister,
+  setUserEmail,
+  setAccountModal,
+}) {
   const emailRef = useRef();
   const passwordRef = useRef();
 
@@ -19,6 +24,43 @@ function Login({ loginRegister, setLoginRegister, setUserEmail }) {
   useEffect(() => {
     setShowPass(checkBox);
   }, [checkBox]);
+
+  function handleLogin() {
+    if (pending) return;
+    if (
+      !emailRef.current.value
+        .trim()
+        .match(/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/)
+    ) {
+      toast.error("Neispravan e-mail.");
+      return;
+    }
+    setPending(true);
+
+    axios
+      .post(
+        "http://localhost:3000/api/signin/",
+        {
+          email: emailRef.current.value,
+          password: passwordRef.current.value,
+        },
+        {
+          validateStatus: function () {
+            return true;
+          },
+        }
+      )
+      .then((res) => {
+        if (res.status !== 200) toast.error("Server error");
+        else {
+          Cookies.set("email", res.data.email);
+          setUserEmail(res.data.email);
+          toast.success("Uspešno prijavljen.");
+          setAccountModal(false);
+        }
+        setPending(false);
+      });
+  }
 
   return (
     <>
@@ -50,6 +92,11 @@ function Login({ loginRegister, setLoginRegister, setUserEmail }) {
               if (e.currentTarget.value === "") {
                 setPassShown(false);
                 setShowBtn(true);
+              }
+            }}
+            onKeyDownCapture={(e) => {
+              if (e.key === "Enter") {
+                handleLogin();
               }
             }}
           />
@@ -109,38 +156,7 @@ function Login({ loginRegister, setLoginRegister, setUserEmail }) {
           <button
             className="submitBtn"
             onClick={() => {
-              if (pending) return;
-              if (
-                !emailRef.current.value
-                  .trim()
-                  .match(/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/)
-              ) {
-                toast.error("Neispravan e-mail.");
-                return;
-              }
-              setPending(true);
-
-              axios
-                .post(
-                  "http://localhost:3000/api/signin/",
-                  {
-                    email: emailRef.current.value,
-                    password: passwordRef.current.value,
-                  },
-                  {
-                    validateStatus: function () {
-                      return true;
-                    },
-                  }
-                )
-                .then((res) => {
-                  if (res.status !== 200) toast.error("Server error");
-                  else {
-                    Cookies.set("email", res.data.email);
-                    setUserEmail(res.data.email);
-                  }
-                  setPending(false);
-                });
+              handleLogin();
             }}
           >
             Log in

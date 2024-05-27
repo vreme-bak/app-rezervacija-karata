@@ -1,7 +1,13 @@
 /* eslint-disable react/prop-types */
 import "../css/NavBar.css";
 import toast from "react-hot-toast";
-function NavBar({ menuOpen, setMenuOpen, setAccountModal }) {
+function NavBar({
+  menuOpen,
+  setMenuOpen,
+  setAccountModal,
+  userEmail,
+  setLogOutModal,
+}) {
   return (
     <>
       <div id="NavBar">
@@ -88,26 +94,42 @@ function NavBar({ menuOpen, setMenuOpen, setAccountModal }) {
               className="navBarBtn profileBtn"
               onClick={() => {
                 setMenuOpen(false);
+                if (userEmail) {
+                  setLogOutModal(true);
+                  return;
+                }
                 setAccountModal(true);
               }}
             >
-              <svg
-                className="svgNavBar"
-                width="1.5em"
-                height="1.5em"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  // eslint-disable-next-line react/no-unknown-property
-                  fill-rule="evenodd"
-                  // eslint-disable-next-line react/no-unknown-property
-                  clip-rule="evenodd"
-                  d="M8.28041 12.7082C6.8913 11.6093 6 9.90875 6 8C6 4.68629 8.68629 2 12 2C15.3137 2 18 4.68629 18 8C18 9.90875 17.1087 11.6093 15.7196 12.7082C19.3311 14.1179 22 17.4467 22 21C22 21.5523 21.5523 22 21 22C20.4477 22 20 21.5523 20 21C20 17.4457 16.2678 14 12 14C7.73216 14 4 17.4457 4 21C4 21.5523 3.55228 22 3 22C2.44772 22 2 21.5523 2 21C2 17.4467 4.66891 14.1179 8.28041 12.7082ZM12 12C14.2091 12 16 10.2091 16 8C16 5.79086 14.2091 4 12 4C9.79086 4 8 5.79086 8 8C8 10.2091 9.79086 12 12 12Z"
-                  fill="currentColor"
-                ></path>
-              </svg>
+              {userEmail ? (
+                <svg
+                  className="svgNavBar"
+                  width="1.32em"
+                  height="1.3em"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 512 512"
+                >
+                  <path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z" />
+                </svg>
+              ) : (
+                <svg
+                  className="svgNavBar"
+                  width="1.5em"
+                  height="1.5em"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    // eslint-disable-next-line react/no-unknown-property
+                    fill-rule="evenodd"
+                    // eslint-disable-next-line react/no-unknown-property
+                    clip-rule="evenodd"
+                    d="M8.28041 12.7082C6.8913 11.6093 6 9.90875 6 8C6 4.68629 8.68629 2 12 2C15.3137 2 18 4.68629 18 8C18 9.90875 17.1087 11.6093 15.7196 12.7082C19.3311 14.1179 22 17.4467 22 21C22 21.5523 21.5523 22 21 22C20.4477 22 20 21.5523 20 21C20 17.4457 16.2678 14 12 14C7.73216 14 4 17.4457 4 21C4 21.5523 3.55228 22 3 22C2.44772 22 2 21.5523 2 21C2 17.4467 4.66891 14.1179 8.28041 12.7082ZM12 12C14.2091 12 16 10.2091 16 8C16 5.79086 14.2091 4 12 4C9.79086 4 8 5.79086 8 8C8 10.2091 9.79086 12 12 12Z"
+                    fill="currentColor"
+                  ></path>
+                </svg>
+              )}
             </div>
           </div>
         </div>

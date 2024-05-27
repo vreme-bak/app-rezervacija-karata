@@ -18,6 +18,7 @@ function App() {
   const [scrollTop, setScrollTop] = useState(0);
 
   const [accountModal, setAccountModal] = useState(false);
+  const [logOutModal, setLogOutModal] = useState(false);
 
   const [loading, setLoading] = useState(true);
 
@@ -56,10 +57,12 @@ function App() {
       <div id="content">
         <div className={`sectionOne ${menuOpen ? "contentDown" : ""}`}>
           <NavBar
+            userEmail={userEmail}
             menuOpen={menuOpen}
             setMenuOpen={setMenuOpen}
             accountModal={accountModal}
             setAccountModal={setAccountModal}
+            setLogOutModal={setLogOutModal}
           />
           <p className="titleOne">Karte za koncerte</p>
           <p className="titleTwo">Sve na jednom mestu</p>
@@ -72,7 +75,16 @@ function App() {
       </div>
       <Toaster containerClassName="toaster-wrapper" />
       {accountModal ? (
-        <Modal setAccountModal={setAccountModal} setUserEmail={setUserEmail} />
+        <Modal setModal={setAccountModal} setUserEmail={setUserEmail} />
+      ) : (
+        ""
+      )}
+      {logOutModal ? (
+        <Modal
+          setModal={setLogOutModal}
+          logOutModal={true}
+          setUserEmail={setUserEmail}
+        />
       ) : (
         ""
       )}

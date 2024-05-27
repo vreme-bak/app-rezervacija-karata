@@ -1,24 +1,39 @@
 /* eslint-disable react/no-unknown-property */
 /* eslint-disable react/prop-types */
 import "../css/Modal.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Login from "./Account/Login";
+import Cookies from "js-cookie";
 import Register from "./Account/Register";
-function Modal({ setAccountModal, setUserEmail }) {
+function Modal({ setModal, setUserEmail, logOutModal }) {
   const [loginRegister, setLoginRegister] = useState(true);
+  useEffect(() => {
+    function handleEsc(e) {
+      if (e.key === "Escape") {
+        setModal(false);
+      }
+    }
+    window.addEventListener("keydown", handleEsc);
+    return () => {
+      window.removeEventListener("keydown", handleEsc);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
-    <>
+    <div id="modal">
       <div
         className="modalBackground"
         onClick={() => {
-          setAccountModal(false);
+          setModal(false);
         }}
       ></div>
-      <div className="modalContainer">
+      <div
+        className={`modalContainer ${logOutModal ? "modalContainer-mod" : ""}`}
+      >
         <div
           className="closeBtn"
           onClick={() => {
-            setAccountModal(false);
+            setModal(false);
           }}
         >
           <svg
@@ -38,22 +53,49 @@ function Modal({ setAccountModal, setUserEmail }) {
           </svg>
         </div>
         <div className="modalContent">
-          {loginRegister ? (
+          {logOutModal ? (
+            <div className="logOut-wrap">
+              <div className="logOutTitle">Log Out?</div>
+              <p className="logOutText">Would you like to sign out?</p>
+              <div className="lgBtns">
+                <div
+                  className="cancleBtn lgbt"
+                  onClick={() => {
+                    setModal(false);
+                  }}
+                >
+                  Cancle
+                </div>
+                <div
+                  className="lgOBtn lgbt"
+                  onClick={() => {
+                    setUserEmail();
+                    Cookies.remove("email");
+                    setModal(false);
+                  }}
+                >
+                  Confirm
+                </div>
+              </div>
+            </div>
+          ) : loginRegister ? (
             <Login
               setUserEmail={setUserEmail}
               loginRegister={loginRegister}
               setLoginRegister={setLoginRegister}
+              setAccountModal={setModal}
             />
           ) : (
             <Register
               setUserEmail={setUserEmail}
               loginRegister={loginRegister}
               setLoginRegister={setLoginRegister}
+              setAccountModal={setModal}
             />
           )}
         </div>
       </div>
-    </>
+    </div>
   );
 }
 export default Modal;
