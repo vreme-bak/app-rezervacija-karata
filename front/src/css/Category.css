@@ -36,3 +36,7 @@
   scrollbar-width: none;
   scroll-snap-type: x mandatory;
 }
+
+.slider:focus {
+  outline: 0;
+}

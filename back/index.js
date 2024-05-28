@@ -45,7 +45,6 @@ app.post("/api/signup/", async (req, res) => {
 });
 
 app.post("/api/signin/", async (req, res) => {
-  console.log(req.body);
   if (!req.body.email || !req.body.password) {
     return res.status(400).end("Nema argumenata.");
   }

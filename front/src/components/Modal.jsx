@@ -2,11 +2,20 @@
 /* eslint-disable react/prop-types */
 import "../css/Modal.css";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import Login from "./Account/Login";
 import Cookies from "js-cookie";
 import Register from "./Account/Register";
 function Modal({ setModal, setUserEmail, logOutModal }) {
   const [loginRegister, setLoginRegister] = useState(true);
+
+  function logOutUser() {
+    setUserEmail();
+    Cookies.remove("email");
+    toast.success("Izlogvan.");
+    setModal(false);
+  }
+
   useEffect(() => {
     function handleEsc(e) {
       if (e.key === "Escape") {
@@ -16,6 +25,22 @@ function Modal({ setModal, setUserEmail, logOutModal }) {
     window.addEventListener("keydown", handleEsc);
     return () => {
       window.removeEventListener("keydown", handleEsc);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  useEffect(() => {
+    function handleEnter(e) {
+      if (e.key === "Enter") {
+        logOutUser();
+      }
+    }
+    if (logOutModal) {
+      window.addEventListener("keydown", handleEnter);
+    }
+    return () => {
+      if (logOutModal) {
+        window.removeEventListener("keydown", handleEnter);
+      }
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -69,9 +94,7 @@ function Modal({ setModal, setUserEmail, logOutModal }) {
                 <div
                   className="lgOBtn lgbt"
                   onClick={() => {
-                    setUserEmail();
-                    Cookies.remove("email");
-                    setModal(false);
+                    logOutUser();
                   }}
                 >
                   Confirm

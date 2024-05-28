@@ -133,6 +133,24 @@
   font-weight: 200;
 }
 
+@media screen and (max-width: 360px) {
+  .lgbt {
+    width: 115px;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .lgbt {
+    width: 105px;
+  }
+}
+
+@media screen and (max-width: 330px) {
+  .lgbt {
+    width: 95px;
+  }
+}
+
 @media screen and (max-width: 425px) {
   .modalBackground {
     display: none;
