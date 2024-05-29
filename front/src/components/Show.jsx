@@ -14,6 +14,7 @@ function Show({
   setAccountModal,
 }) {
   const [currentImg, setCurrentImg] = useState(1);
+  const [rezervacijaBtn, setRezervacijaBtn] = useState(false);
   const placeholderColors = [
     "linear-gradient(135deg, #e7edf3, #f8e3e3)",
     "linear-gradient(135deg, #e7edf3, #e6e6fa)",
@@ -34,7 +35,6 @@ function Show({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  //implentacija mejla
   //baza
   //search
 
@@ -187,15 +187,13 @@ function Show({
           </div>
           <div className="innerMid">
             <div className="namedate-wrap">
-              <div className="groupName">Rammstein</div>
+              <div className="groupName">{conData.conGroup}</div>
               <div className="concertDate">({conData.conDate})</div>
             </div>
-            <div className="concertDesc">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Soluta
-              tenetur sed nisi numquam minima aliquid, quam aut blanditiis
-              consectetur consequuntur.
+            <div className="concertDesc">{conData.conOpis}</div>
+            <div className="concertLocation">
+              Lokacija: {conData.conLocation}
             </div>
-            <div className="concertLocation">Lokacija: Usce Park</div>
             <div className="cenaKarteIndijanac">
               Cena Karte: {conData.conPrice} RSD
             </div>
@@ -215,14 +213,26 @@ function Show({
             </div>
           ) : (
             <div
-              className="reserveDugme dugme"
+              className={`reserveDugme dugme ${
+                rezervacijaBtn ? "reserveDugmeDisable" : ""
+              }`}
               onClick={() => {
+                if (rezervacijaBtn) return;
+                setRezervacijaBtn(true);
                 axios
                   .post(
                     "http://localhost:3000/api/send/",
                     {
                       email: userEmail,
-                      body: "test",
+                      body: `
+                      Uspešna rezervacija karte.
+
+                      Ime Koncerta: ${conData.conName},
+                      Grupa: ${conData.conGroup},
+                      Cena Karte: ${conData.conPrice}
+
+                      Uz ovaj dokaz rezervacije kupiti kartu na ulazu.
+                      `,
                     },
                     {
                       validateStatus: function () {
@@ -234,6 +244,7 @@ function Show({
                     if (res.status !== 200) toast.error("Server error");
                     else {
                       toast.success("Uspešno rezervisano.");
+                      setRezervacijaBtn(false);
                     }
                   });
               }}

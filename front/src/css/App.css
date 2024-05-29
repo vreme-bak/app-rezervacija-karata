@@ -178,3 +178,11 @@ body {
     z-index: 1;
   }
 }
+
+.searchSideNavBar {
+  display: none;
+}
+
+.searchSideNavBar-menu {
+  display: none;
+}

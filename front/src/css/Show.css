@@ -315,6 +315,11 @@
   box-shadow: 0px 0px 12px #2a476ab4;
 }
 
+.reserveDugmeDisable {
+  background-color: #87878774;
+  cursor: default;
+}
+
 @media screen and (hover: none) {
   .showCurrentImg {
     opacity: 1;

@@ -65,20 +65,21 @@ app.post("/api/send", async (req, res) => {
     return res.status(400).send({ message: "Email and body are required" });
   }
 
-  // Create a Nodemailer transporter using your email service configuration
   let transporter = nodemailer.createTransport({
-    service: "gmail",
+    host: "mail.cutoptimizer.com",
+    port: 465,
+    secure: true,
     auth: {
-      user: "luvucetic@gmail.com",
-      pass: "",
+      user: "maturski@cutoptimizer.com",
+      pass: "=Uo~=N!5%wC^",
     },
   });
 
   // Email options
   let mailOptions = {
-    from: "luvucetic@gmail.com",
+    from: '"Rezervacije" <maturski@cutoptimizer.com>',
     to: email,
-    subject: "Rezervacija.",
+    subject: "Rezervacija",
     text: body,
   };
 
