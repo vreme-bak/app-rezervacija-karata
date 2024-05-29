@@ -2,7 +2,7 @@
 import { useRef, createRef } from "react";
 import "../css/Concerts.css";
 import Category from "./Category";
-function Concerts({ activeConcerts }) {
+function Concerts({ activeConcerts, setMenuOpen }) {
   let refsSpin = useRef([createRef()]);
   function updateLength(value) {
     refsSpin.current = refsSpin.current.splice(0, value);
@@ -20,6 +20,7 @@ function Concerts({ activeConcerts }) {
             pass={refsSpin.current[i]}
             key={e.catName}
             sepConcerts={e}
+            setMenuOpen={setMenuOpen}
           />
         ))}
       </div>

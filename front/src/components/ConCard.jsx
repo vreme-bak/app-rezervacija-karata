@@ -2,7 +2,7 @@
 import "../css/ConCard.css";
 import Show from "./Show";
 import { useState } from "react";
-function ConCard({ conData, pass }) {
+function ConCard({ conData, pass, setMenuOpen }) {
   const [showModal, setShowModal] = useState(false);
   const placeholderColors = [
     "linear-gradient(135deg, #e7edf3, #f8e3e3)",
@@ -15,6 +15,7 @@ function ConCard({ conData, pass }) {
       <div className={`conCard`} ref={pass}>
         <div
           onClick={() => {
+            setMenuOpen(false);
             setShowModal(true);
           }}
           className="disPic"
@@ -29,6 +30,7 @@ function ConCard({ conData, pass }) {
         <div
           className="conName"
           onClick={() => {
+            setMenuOpen(false);
             setShowModal(true);
           }}
         >
@@ -37,6 +39,7 @@ function ConCard({ conData, pass }) {
         <div
           className="conDate"
           onClick={() => {
+            setMenuOpen(false);
             setShowModal(true);
           }}
         >
@@ -45,6 +48,7 @@ function ConCard({ conData, pass }) {
         <div
           className="conPrice"
           onClick={() => {
+            setMenuOpen(false);
             setShowModal(true);
           }}
         >

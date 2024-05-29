@@ -3,7 +3,7 @@ import "../css/Category.css";
 import CatScroller from "./CatScroller";
 import ConCard from "./ConCard";
 import { useEffect, useState, useRef, createRef } from "react";
-function Category({ sepConcerts, pass }) {
+function Category({ sepConcerts, pass, setMenuOpen }) {
   const [loading, setLoading] = useState(true);
   const [navStatus, setNavStatus] = useState(1);
   const [stop, setStop] = useState(false);
@@ -70,7 +70,12 @@ function Category({ sepConcerts, pass }) {
         </div>
         <div className="slider" ref={pass}>
           {creator.map((e, i) => (
-            <ConCard pass={refsClick.current[i]} key={e.conName} conData={e} />
+            <ConCard
+              pass={refsClick.current[i]}
+              key={e.conName}
+              conData={e}
+              setMenuOpen={setMenuOpen}
+            />
           ))}
         </div>
       </div>

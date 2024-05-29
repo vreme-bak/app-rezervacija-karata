@@ -71,7 +71,7 @@ function App() {
             Najpovoljnije, sve odmah. Maturski rad Luka Vučetić.
           </p>
         </div>
-        <Concerts activeConcerts={baza} />
+        <Concerts activeConcerts={baza} setMenuOpen={setMenuOpen} />
       </div>
       <Toaster containerClassName="toaster-wrapper" />
       {accountModal ? (

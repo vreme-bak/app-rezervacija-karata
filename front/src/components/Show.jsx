@@ -1,9 +1,17 @@
 /* eslint-disable react/no-unknown-property */
 /* eslint-disable react/prop-types */
 import "../css/Show.css";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 // eslint-disable-next-line no-unused-vars
 function Show({ setShowModal, conData }) {
+  const [currentImg, setCurrentImg] = useState(1);
+  const placeholderColors = [
+    "linear-gradient(135deg, #e7edf3, #f8e3e3)",
+    "linear-gradient(135deg, #e7edf3, #e6e6fa)",
+    "linear-gradient(135deg, #e7edf3, #d1f0f6)",
+    "linear-gradient(135deg, #e7edf3, #fdebd3)",
+  ];
+
   useEffect(() => {
     function handleEsc(e) {
       if (e.key === "Escape") {
@@ -16,6 +24,24 @@ function Show({ setShowModal, conData }) {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  //conImage dodaj dole kurce za koja je slika
+  //conName
+  //conDate
+  //conPrice
+  //
+  //conDesc
+  //conBand
+
+  //responsive
+
+  //buy ticket dugme
+  //log in dugme
+
+  //implentacija mejla
+
+  //285/188
+
   return (
     <div className="show-wrap">
       <div
@@ -46,6 +72,89 @@ function Show({ setShowModal, conData }) {
               fill="currentColor"
             ></path>
           </svg>
+        </div>
+        <div className="showTitle">{conData.conName}</div>
+        <div className="showImgs">
+          <div
+            className="showBtnScroll showBtnScrollLeft"
+            onClick={() => {
+              if (currentImg === 1) {
+                setCurrentImg(3);
+                return;
+              }
+              setCurrentImg(currentImg - 1);
+              return;
+            }}
+          >
+            <svg
+              className="showBtnScrollSvg"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 320 512"
+            >
+              <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z" />
+            </svg>
+          </div>
+          {currentImg === 1 ? (
+            <div
+              className="showImgOne showImg"
+              style={
+                conData.conImage != ""
+                  ? { backgroundImage: `url(${conData.conImage})` }
+                  : {
+                      background: `${placeholderColors[conData.conPrice % 4]}`,
+                    }
+              }
+            ></div>
+          ) : (
+            ""
+          )}
+          {currentImg === 2 ? (
+            <div
+              className="showImgTwo showImg"
+              style={
+                conData.conImage != ""
+                  ? { backgroundImage: `url(${conData.conImageShow1})` }
+                  : {
+                      background: `${placeholderColors[conData.conPrice % 4]}`,
+                    }
+              }
+            ></div>
+          ) : (
+            ""
+          )}
+          {currentImg === 3 ? (
+            <div
+              className="showImgThree showImg"
+              style={
+                conData.conImage != ""
+                  ? { backgroundImage: `url(${conData.conImageShow2})` }
+                  : {
+                      background: `${placeholderColors[conData.conPrice % 4]}`,
+                    }
+              }
+            ></div>
+          ) : (
+            ""
+          )}
+          <div
+            className="showBtnScroll showBtnScrollRight"
+            onClick={() => {
+              if (currentImg === 3) {
+                setCurrentImg(1);
+                return;
+              }
+              setCurrentImg(currentImg + 1);
+              return;
+            }}
+          >
+            <svg
+              className="showBtnScrollSvg"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 320 512"
+            >
+              <path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" />
+            </svg>
+          </div>
         </div>
       </div>
     </div>
