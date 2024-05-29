@@ -81,7 +81,7 @@ function NavBar({
               className="support"
               onClick={() => {
                 setMenuOpen(false);
-                toast.error("Currently unavailable", {
+                toast.error("Trenutno nedostupno.", {
                   style: {
                     backgroundColor: "rgb(255, 129, 129)",
                   },

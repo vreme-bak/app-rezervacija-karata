@@ -1,6 +1,9 @@
 /* eslint-disable react/prop-types */
 import "../css/ConCard.css";
+import Show from "./Show";
+import { useState } from "react";
 function ConCard({ conData, pass }) {
+  const [showModal, setShowModal] = useState(false);
   const placeholderColors = [
     "linear-gradient(135deg, #e7edf3, #f8e3e3)",
     "linear-gradient(135deg, #e7edf3, #e6e6fa)",
@@ -11,6 +14,9 @@ function ConCard({ conData, pass }) {
     <>
       <div className={`conCard`} ref={pass}>
         <div
+          onClick={() => {
+            setShowModal(true);
+          }}
           className="disPic"
           style={
             conData.conImage != ""
@@ -20,10 +26,32 @@ function ConCard({ conData, pass }) {
                 }
           }
         ></div>
-        <div className="conName">{conData.conName}</div>
-        <div className="conDate">{conData.conDate}</div>
-        <div className="conPrice">Od: {conData.conPrice} RSD</div>
+        <div
+          className="conName"
+          onClick={() => {
+            setShowModal(true);
+          }}
+        >
+          {conData.conName}
+        </div>
+        <div
+          className="conDate"
+          onClick={() => {
+            setShowModal(true);
+          }}
+        >
+          {conData.conDate}
+        </div>
+        <div
+          className="conPrice"
+          onClick={() => {
+            setShowModal(true);
+          }}
+        >
+          Od: {conData.conPrice} RSD
+        </div>
       </div>
+      {showModal ? <Show setShowModal={setShowModal} conData={conData} /> : ""}
     </>
   );
 }

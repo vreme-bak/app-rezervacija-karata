@@ -42,6 +42,7 @@ function Category({ sepConcerts, pass }) {
       block: "nearest",
       inline: "center",
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [navStatus]);
 
   useEffect(() => {
