@@ -5,6 +5,7 @@ const Schema = require("./db/Schema");
 const cors = require("cors");
 const User = require("./db/User");
 const bodyParser = require("body-parser");
+const nodemailer = require("nodemailer");
 
 require("dotenv").config();
 
@@ -55,6 +56,41 @@ app.post("/api/signin/", async (req, res) => {
     return res.status(400).end("Invalid credentials.");
   }
   return res.status(200).json(user).end();
+});
+
+app.post("/api/send", async (req, res) => {
+  const { email, body } = req.body;
+
+  if (!email || !body) {
+    return res.status(400).send({ message: "Email and body are required" });
+  }
+
+  // Create a Nodemailer transporter using your email service configuration
+  let transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: "luvucetic@gmail.com",
+      pass: "",
+    },
+  });
+
+  // Email options
+  let mailOptions = {
+    from: "luvucetic@gmail.com",
+    to: email,
+    subject: "Rezervacija.",
+    text: body,
+  };
+
+  try {
+    // Send email
+    let info = await transporter.sendMail(mailOptions);
+    console.log("Email sent: " + info.response);
+    res.send({ message: "Email sent successfully" });
+  } catch (error) {
+    console.error("Error sending email: ", error);
+    res.status(500).send({ message: "Failed to send email" });
+  }
 });
 
 app.listen(process.env.PORT || 3000, () => {

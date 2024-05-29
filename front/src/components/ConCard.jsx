@@ -2,7 +2,14 @@
 import "../css/ConCard.css";
 import Show from "./Show";
 import { useState } from "react";
-function ConCard({ conData, pass, setMenuOpen }) {
+function ConCard({
+  conData,
+  pass,
+  setMenuOpen,
+  userEmail,
+  accountModal,
+  setAccountModal,
+}) {
   const [showModal, setShowModal] = useState(false);
   const placeholderColors = [
     "linear-gradient(135deg, #e7edf3, #f8e3e3)",
@@ -55,7 +62,17 @@ function ConCard({ conData, pass, setMenuOpen }) {
           Od: {conData.conPrice} RSD
         </div>
       </div>
-      {showModal ? <Show setShowModal={setShowModal} conData={conData} /> : ""}
+      {showModal ? (
+        <Show
+          setShowModal={setShowModal}
+          conData={conData}
+          userEmail={userEmail}
+          accountModal={accountModal}
+          setAccountModal={setAccountModal}
+        />
+      ) : (
+        ""
+      )}
     </>
   );
 }

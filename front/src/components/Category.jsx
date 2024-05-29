@@ -3,7 +3,14 @@ import "../css/Category.css";
 import CatScroller from "./CatScroller";
 import ConCard from "./ConCard";
 import { useEffect, useState, useRef, createRef } from "react";
-function Category({ sepConcerts, pass, setMenuOpen }) {
+function Category({
+  sepConcerts,
+  pass,
+  setMenuOpen,
+  userEmail,
+  accountModal,
+  setAccountModal,
+}) {
   const [loading, setLoading] = useState(true);
   const [navStatus, setNavStatus] = useState(1);
   const [stop, setStop] = useState(false);
@@ -75,6 +82,9 @@ function Category({ sepConcerts, pass, setMenuOpen }) {
               key={e.conName}
               conData={e}
               setMenuOpen={setMenuOpen}
+              userEmail={userEmail}
+              accountModal={accountModal}
+              setAccountModal={setAccountModal}
             />
           ))}
         </div>

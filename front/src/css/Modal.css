@@ -1,7 +1,7 @@
 .modalContainer {
   background-color: #e7edf3;
   border-radius: 15px;
-  width: 360px;
+  width: 364px;
   min-height: 200px;
 
   position: fixed;
@@ -151,7 +151,7 @@
   }
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 430px) {
   .modalBackground {
     display: none;
   }

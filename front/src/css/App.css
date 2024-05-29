@@ -174,4 +174,7 @@ body {
     z-index: 3;
     height: 300px;
   }
+  #content:has(.show-wrap) .sectionOne {
+    z-index: 1;
+  }
 }

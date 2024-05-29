@@ -25,6 +25,9 @@
 }
 
 .show-container {
+  display: flex;
+  flex-direction: column;
+
   position: fixed;
   top: 50%;
   left: 50%;
@@ -37,7 +40,7 @@
   height: 560px;
   width: 427.5px;
 
-  padding: 1.5em;
+  padding: 1.5em 1.5em 2.5em 1.5em;
 }
 
 .showCloseBtn {
@@ -82,6 +85,7 @@
 .showImgs {
   margin-top: 20px;
   height: 284px;
+  width: 427.5px;
 }
 
 .showImg {
@@ -102,10 +106,8 @@
   transition-duration: 400ms;
   transition-timing-function: ease;
 
-  cursor: pointer;
-
   opacity: 0;
-  animation: modalAppear 200ms 1;
+  animation: imageAppear 200ms 1;
   animation-fill-mode: forwards;
 }
 
@@ -125,7 +127,7 @@
   width: 28px;
   border-radius: 100%;
   cursor: pointer;
-  background-color: rgba(0, 0, 0, 0.506);
+  background-color: rgba(255, 255, 255, 0.388);
 
   transition: background-color, opacity;
   transition-duration: 300ms;
@@ -143,7 +145,7 @@
 }
 
 .showBtnScrollRight {
-  right: 35px;
+  left: 408.5px;
 }
 
 .showBtnScroll:hover {
@@ -173,9 +175,53 @@
   transition-timing-function: ease;
 }
 
-.showBtnScrollSvg:hover {
+.showBtnScroll:hover .showBtnScrollSvg {
   filter: invert(99%) sepia(4%) saturate(1702%) hue-rotate(211deg)
     brightness(119%) contrast(100%);
+}
+
+.showCurrentImg {
+  opacity: 0;
+
+  position: absolute;
+  z-index: 101;
+  height: 16px;
+  width: 48px;
+  background-color: rgba(255, 255, 255, 0.388);
+  border: 1.5px solid black;
+  border-radius: 15px;
+  top: 327.2px;
+  left: 237.75px;
+  transform: translateX(-50%);
+
+  pointer-events: none;
+
+  transition: opacity;
+  transition-duration: 300ms;
+  transition-timing-function: ease;
+
+  display: flex;
+  align-items: center;
+}
+
+.showImgs:hover .showCurrentImg {
+  opacity: 1;
+}
+
+.imgIndicator {
+  height: 10px;
+  aspect-ratio: 1/1;
+  border: 1px solid black;
+  border-radius: 100%;
+  margin-right: 2px;
+}
+
+.imgIndicator:first-of-type {
+  margin-left: 4px;
+}
+
+.imgIndicator:last-of-type {
+  margin-right: 4px;
 }
 
 @keyframes imageAppear {
@@ -184,5 +230,241 @@
   }
   100% {
     opacity: 1;
+  }
+}
+
+.groupName {
+  font-weight: 300;
+  font-size: 14pt;
+}
+
+.concertDate {
+  font-weight: 200;
+  margin-left: auto;
+  vertical-align: bottom;
+}
+
+.concertDesc {
+  margin-top: 15px;
+  font-weight: 300;
+}
+
+.concertLocation {
+  margin-top: 15px;
+  font-weight: 300;
+}
+
+.namedate-wrap {
+  margin-top: 15px;
+  display: flex;
+}
+
+.footer {
+  margin-top: auto;
+  display: flex;
+}
+
+.cenaKarte {
+  font-weight: 600;
+  display: flex;
+  align-items: end;
+}
+
+.cenaKarteIndijanac {
+  font-weight: 300;
+  display: flex;
+  align-items: end;
+  margin-top: 5px;
+  display: none;
+}
+
+.dugme {
+  margin-left: auto;
+  width: 150px;
+  height: 35px;
+  border-radius: 5px;
+
+  cursor: pointer;
+
+  box-shadow: 0px 0px 8px #8787875d;
+
+  transition: box-shadow;
+  transition-duration: 400ms;
+  transition-timing-function: ease;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-weight: 300;
+
+  user-select: none;
+}
+
+.dugme:hover {
+  box-shadow: 0px 0px 12px #87878774;
+}
+
+.reserveDugme {
+  color: white;
+  background-color: #2a476a;
+  box-shadow: 0px 0px 8px #2a476a7a;
+}
+
+.reserveDugme:hover {
+  box-shadow: 0px 0px 12px #2a476ab4;
+}
+
+@media screen and (hover: none) {
+  .showCurrentImg {
+    opacity: 1;
+  }
+  .showBtnScroll {
+    opacity: 1;
+  }
+  .showImg {
+    box-shadow: inset 0 0 8px #2a476a;
+    background-size: 100%;
+  }
+}
+
+@media screen and (max-height: 640px) and (orientation: landscape) {
+  .show-container {
+    height: 370px;
+    width: 950px;
+  }
+
+  .midSectionWrap {
+    display: flex;
+  }
+  .innerMid {
+    margin-left: auto;
+    width: 500px;
+  }
+}
+
+@media screen and (max-height: 640px) and (max-width: 1030px) and (orientation: landscape) {
+  .show-container {
+    height: 370px;
+    width: 700px;
+  }
+  .innerMid {
+    margin-left: auto;
+    width: 240px;
+  }
+}
+
+@media screen and (max-height: 455px) and (orientation: landscape) {
+  .show-bg {
+    display: none;
+  }
+  .show-container {
+    height: 86%;
+    width: 96%;
+    border-radius: 0;
+  }
+  .innerMid {
+    width: 40%;
+  }
+}
+
+@media screen and (max-height: 400px) and (orientation: landscape) {
+  .footer {
+    position: absolute;
+    width: 35%;
+    bottom: 40px;
+    right: 40px;
+  }
+  .cenaKarte {
+    display: none;
+  }
+  .cenaKarteIndijanac {
+    display: flex;
+  }
+}
+
+@media screen and (max-height: 640px) and (max-width: 780px) and (orientation: landscape) {
+  .innerMid {
+    width: 30%;
+  }
+}
+
+@media screen and (max-width: 490px) and (orientation: portrait) {
+  .show-container {
+    height: 93%;
+    width: 90%;
+    border-radius: 0;
+  }
+  .showImg {
+    width: calc(100% - 48px);
+  }
+  .showBtnScrollRight {
+    left: calc(100% - 65px);
+  }
+  .showCurrentImg {
+    left: calc(50%);
+  }
+}
+
+@media screen and (max-width: 470px) and (orientation: portrait) {
+  .showImg {
+    background-size: 120%;
+  }
+  .showImg:hover {
+    background-size: 110%;
+  }
+  .showBtnScroll:hover ~ .showImg {
+    box-shadow: inset 0 0 8px #2a476a;
+    background-size: 110%;
+  }
+
+  .showImg:has(~ .showBtnScroll:hover) {
+    box-shadow: inset 0 0 8px #2a476a;
+    background-size: 110%;
+  }
+}
+
+@media screen and (max-width: 430px) and (orientation: portrait) {
+  .showImg {
+    background-size: 140%;
+  }
+  .showImg:hover {
+    background-size: 135%;
+  }
+  .showBtnScroll:hover ~ .showImg {
+    box-shadow: inset 0 0 8px #2a476a;
+    background-size: 135%;
+  }
+
+  .showImg:has(~ .showBtnScroll:hover) {
+    box-shadow: inset 0 0 8px #2a476a;
+    background-size: 135%;
+  }
+}
+
+@media screen and (max-width: 365px) and (orientation: portrait) {
+  .cenaKarte {
+    display: none;
+  }
+  .cenaKarteIndijanac {
+    display: flex;
+  }
+}
+
+@media screen and (max-width: 350px) and (orientation: portrait) {
+  .showImg {
+    background-size: cover;
+  }
+  .showImg:hover {
+    background-size: cover;
+  }
+  .showBtnScroll:hover ~ .showImg {
+    box-shadow: inset 0 0 8px #2a476a;
+    background-size: cover;
+  }
+
+  .showImg:has(~ .showBtnScroll:hover) {
+    box-shadow: inset 0 0 8px #2a476a;
+    background-size: cover;
   }
 }

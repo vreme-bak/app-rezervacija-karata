@@ -2,7 +2,13 @@
 import { useRef, createRef } from "react";
 import "../css/Concerts.css";
 import Category from "./Category";
-function Concerts({ activeConcerts, setMenuOpen }) {
+function Concerts({
+  activeConcerts,
+  setMenuOpen,
+  userEmail,
+  accountModal,
+  setAccountModal,
+}) {
   let refsSpin = useRef([createRef()]);
   function updateLength(value) {
     refsSpin.current = refsSpin.current.splice(0, value);
@@ -21,6 +27,9 @@ function Concerts({ activeConcerts, setMenuOpen }) {
             key={e.catName}
             sepConcerts={e}
             setMenuOpen={setMenuOpen}
+            userEmail={userEmail}
+            accountModal={accountModal}
+            setAccountModal={setAccountModal}
           />
         ))}
       </div>
